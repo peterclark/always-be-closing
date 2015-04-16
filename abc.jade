@@ -1,0 +1,56 @@
+head
+  title To Do List
+  
+body
+
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#navbar')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/') 
+          span.glyphicon.glyphicon-list-alt
+      #navbar.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          p.navbar-text
+            +loginButtons
+          
+  .container
+            
+    if currentUser
+      form.new-task
+        .row
+          .col-xs-12
+            .input-group
+              span.input-group-addon
+                strong= incompleteCount
+              input.form-control(type='text' name='text' placeholder='Type to add new tasks')
+              span.input-group-addon
+                .hide-completed.pull-right
+                  input(type='checkbox' checked="#{hideCompleted}")
+    
+    br
+    
+    ul.list-group
+      each tasks
+        +task
+
+template(name="task")
+  li.list-group-item(class=status)
+    a(href="#").pull-right.delete.close &times;
+    
+    input.toggle-checked(type='checkbox' checked=checked)
+    
+    if isOwner
+      button.toggle-private.btn.btn-xs.btn-default
+        if private
+          | Private
+        else
+          | Public
+    
+    span.text
+      strong #{username} 
+      | - 
+      = text
