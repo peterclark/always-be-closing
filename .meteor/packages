@@ -11,3 +11,4 @@ coffeescript
 kaptron:minimongoid
 twbs:bootstrap
 mquandalle:jade
+iron:router

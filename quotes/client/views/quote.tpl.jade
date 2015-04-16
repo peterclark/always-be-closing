@@ -1,0 +1,14 @@
+li.list-group-item(class=status)
+  a(href="#").pull-right.delete.close &times;
+  
+  if mine
+    button.toggle-private.btn.btn-xs.btn-default
+      if private
+        | Private
+      else
+        | Public
+  
+  span.text
+    strong #{name} 
+    | - 
+    = description

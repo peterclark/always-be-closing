@@ -6,14 +6,7 @@ body
   nav.navbar.navbar-default.navbar-fixed-top
     .container-fluid
       .navbar-header
-        button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#navbar')
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href='/') 
-          span.glyphicon.glyphicon-list-alt
-      #navbar.collapse.navbar-collapse
-        ul.nav.navbar-nav.navbar-right
+        ul.nav.navbar-nav
           p.navbar-text
             +loginButtons
           
@@ -36,21 +29,3 @@ body
     ul.list-group
       each tasks
         +task
-
-template(name="task")
-  li.list-group-item(class=status)
-    a(href="#").pull-right.delete.close &times;
-    
-    input.toggle-checked(type='checkbox' checked=checked)
-    
-    if isOwner
-      button.toggle-private.btn.btn-xs.btn-default
-        if private
-          | Private
-        else
-          | Public
-    
-    span.text
-      strong #{username} 
-      | - 
-      = text

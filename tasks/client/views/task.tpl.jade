@@ -1,0 +1,16 @@
+li.list-group-item(class=status)
+  a(href="#").pull-right.delete.close &times;
+  
+  input.toggle-checked(type='checkbox' checked=checked)
+  
+  if isOwner
+    button.toggle-private.btn.btn-xs.btn-default
+      if private
+        | Private
+      else
+        | Public
+  
+  span.text
+    strong #{username} 
+    | - 
+    = text

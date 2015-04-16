@@ -1,0 +1,7 @@
+body { padding-top: 70px; }
+
+#login-dropdown-list {
+  position: fixed;
+  top: 25%;
+  left: calc(50% - 125px);
+}
