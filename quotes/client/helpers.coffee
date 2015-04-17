@@ -4,4 +4,15 @@ Template.quote.helpers
     status = []
     if this.locked
       status.push 'locked'
-    return status.join(' ')
+    status.join(' ')
+    
+Template.quotes.helpers
+
+  quotes: ->
+    Quote.find()
+
+  totalCount: ->
+    Quote.count()
+    
+  showMine: ->
+    Session.get "showMine"
