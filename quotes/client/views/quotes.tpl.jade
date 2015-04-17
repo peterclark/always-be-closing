@@ -1,1 +1,19 @@
-h1 This is the Quotes page
+title Quotes
+
+if currentUser
+  form.new-quote
+    .row
+      .col-xs-12
+        .input-group
+          span.input-group-addon
+            strong= totalCount
+          input.form-control(type='text' name='text' placeholder='Type to add a new quote')
+          span.input-group-addon
+            .show-mine.pull-right
+              input(type='checkbox' checked="#{showMine}")
+
+br
+
+ul.list-group
+  each quotes
+    +quote
