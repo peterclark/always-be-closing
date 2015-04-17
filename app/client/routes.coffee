@@ -1,3 +1,5 @@
+Router.configure
+  layoutTemplate: 'layout'
+
 Router.route '/', ->
-  @.layout 'layout'
   @.render 'tasks'
