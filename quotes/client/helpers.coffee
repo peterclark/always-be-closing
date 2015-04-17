@@ -9,7 +9,10 @@ Template.quote.helpers
 Template.quotes.helpers
 
   quotes: ->
-    Quote.find()
+    if Session.get "showMine"
+      Quote.mine Meteor.userId()
+    else
+      Quote.find()
 
   totalCount: ->
     Quote.count()

@@ -8,7 +8,6 @@ Template.quotes.events
     
   # create a new quote when form submitted
   "submit .new-quote": (e) ->
-    console.log 'submit quote form'
     name = e.target.text.value
     Meteor.call("createQuote", name)
     e.target.text.value = ""

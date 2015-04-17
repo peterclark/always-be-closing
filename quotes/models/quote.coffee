@@ -14,6 +14,16 @@ class @Quote extends Minimongoid
     locked: false
     username: ''
   
+  # class methods
+  
+  @icon: ->
+    "glyphicons-file"
+    
+  @mine: (user_id) ->
+    @.where user_id: user_id
+  
+  # instance methods
+  
   validate: ->
     unless @name and @name.length > 3
       @error('name', 'Quote name is too short.')
@@ -24,13 +34,6 @@ class @Quote extends Minimongoid
       for key, value of i
         msg += "#{key} : #{value}"
     msg
-  
-  # class methods
-  
-  @icon: ->
-    "glyphicons-file"
-  
-  # instance methods
   
   icon: ->
     "glyphicons-file"

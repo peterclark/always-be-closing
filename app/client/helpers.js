@@ -1,3 +1,0 @@
-Template.tasks.helpers({
-
-});
