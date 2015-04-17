@@ -12,6 +12,7 @@ class @Quote extends Minimongoid
   @defaults:
     description: ''
     locked: false
+    username: ''
   
   validate: ->
     unless @name and @name.length > 3
