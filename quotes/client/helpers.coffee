@@ -1,9 +1,11 @@
 Template.quote.helpers
-  
+
   status: -> 
     status = []
-    if this.locked
+    if @.locked
       status.push 'locked'
+    if @.mine()
+      status.push 'mine'
     status.join(' ')
     
 Template.quotes.helpers

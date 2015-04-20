@@ -2,6 +2,5 @@ li.list-group-item(class=status)
   if mine
     a(href="#").pull-right.delete.close &times;
   
-  span.text
-    strong= name 
-    small= description
+  a(href="/quotes/#{id}")
+    strong= name

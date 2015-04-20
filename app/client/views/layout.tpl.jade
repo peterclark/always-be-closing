@@ -1,15 +1,17 @@
-head
-  block title
-    title Always Be Closing
-  
-body
+nav#main-nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      ul.nav.navbar-nav
+        p.navbar-text
+          +loginButtons
+    ul.nav.navbar-nav
+      li
+        a(href="/") Quotes
+      li
+        a(href="/tasks") Tasks
+        
+.container
 
-  nav.navbar.navbar-default.navbar-fixed-top
-    .container-fluid
-      .navbar-header
-        ul.nav.navbar-nav
-          p.navbar-text
-            +loginButtons
-          
-  .container
-    +yield
+  +sAlert
+    
+  +yield

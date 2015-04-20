@@ -9,7 +9,10 @@ Template.quotes.events
   # create a new quote when form submitted
   "submit .new-quote": (e) ->
     name = e.target.text.value
-    Meteor.call("createQuote", name)
+    params = { name: name }
+    Meteor.call "createQuote", params, (error, result) ->
+      console.log error
+      sAlert.error error.reason.join(', ')
     e.target.text.value = ""
     false
     

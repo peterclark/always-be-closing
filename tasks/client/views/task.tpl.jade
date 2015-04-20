@@ -11,6 +11,7 @@ li.list-group-item(class=status)
         | Public
   
   span.text
-    strong #{username} 
+    strong
+      a(href="/tasks/#{_id}")= username
     | - 
     = text

@@ -1,4 +1,5 @@
 class @Quote extends Minimongoid
+  @debug = true
   @_collection: new Meteor.Collection('quotes')
   
   @belongs_to: [
@@ -26,13 +27,14 @@ class @Quote extends Minimongoid
   
   validate: ->
     unless @name and @name.length > 3
-      @error('name', 'Quote name is too short.')
+      @error('name', 'Quote name is too short')
+      @error('length', 'Length is wrong')
       
-  error_message: ->
-    msg = ''
+  error_messages: ->
+    msg = []
     for i in @errors
       for key, value of i
-        msg += "#{key} : #{value}"
+        msg.push value
     msg
   
   icon: ->
