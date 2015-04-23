@@ -17,13 +17,29 @@ body {
   border: none;
 }
 
+span.icon-bar {
+  background-color: white !important;
+}
+
 #login-dropdown-list {
   position: fixed;
   top: 25%;
   left: calc(50% - 125px);
 }
 
+#login-buttons {
+  padding: 15px;
+  line-height: 20px;
+}
+
+#login-name-link {
+  text-decoration: none !important;
+}
+
 #login-buttons .login-close-text {
   color: #000;
-  content: '&times;'
+}
+
+.page-header {
+  margin-top: 0;
 }

@@ -7,15 +7,27 @@ Template.quotes.events
     Session.set("showMine", e.target.checked)
     
   # create a new quote when form submitted
-  "submit .new-quote": (e) ->
+  "submit .create-quote": (e) ->
     name = e.target.text.value
     params = { name: name }
     Meteor.call "createQuote", params, (error, result) ->
-      console.log error
-      sAlert.error error.reason.join(', ')
+      sAlert.error( error.reason ) if error
     e.target.text.value = ""
     false
+
+Template.quote.events
     
   # delete the quote
   "click .delete": (e) ->
-    Meteor.call("destroyQuote", @._id)
+    Meteor.call("destroyQuote", @.id)
+    
+Template.show_quote.events
+
+  # add an option
+  "click .create-option": (e) ->
+    e.preventDefault()
+    params = { quote_id: @.id }
+    Meteor.call "createOption", params, (error, result) ->
+      sAlert.error( error.reason ) if error
+        
+         

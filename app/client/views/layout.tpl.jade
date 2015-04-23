@@ -1,16 +1,21 @@
 nav#main-nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     .navbar-header
+      button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#menu")
+        span.glyphicon.glyphicon-align-justify
+      a.navbar-brand(href="/") Brand
+    
+    .collapse.navbar-collapse#menu  
       ul.nav.navbar-nav
-        p.navbar-text
+        li
+          a(href="/") Quotes
+        li
+          a(href="/tasks") Tasks
+      ul.nav.navbar-nav.pull-right
+        li
           +loginButtons
-    ul.nav.navbar-nav
-      li
-        a(href="/") Quotes
-      li
-        a(href="/tasks") Tasks
         
-.container
+.container-fluid
 
   +sAlert
     

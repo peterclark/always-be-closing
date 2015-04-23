@@ -1,14 +1,13 @@
 class @Quote extends Minimongoid
-  @debug = true
   @_collection: new Meteor.Collection('quotes')
   
   @belongs_to: [
     { name: 'user' }
   ]
   
-  # @embeds_many:  [
-  #   { name: 'options' }
-  # ]
+  @embeds_many:  [
+    { name: 'options' }
+  ]
   
   @defaults:
     description: ''
@@ -18,7 +17,7 @@ class @Quote extends Minimongoid
   # class methods
   
   @icon: ->
-    "glyphicons-file"
+    "fa-file-text"
     
   @mine: (user_id) ->
     @.where user_id: user_id
@@ -35,10 +34,10 @@ class @Quote extends Minimongoid
     for i in @errors
       for key, value of i
         msg.push value
-    msg
+    msg.join(', ')
   
   icon: ->
-    "glyphicons-file"
+    "fa-file-text"
     
   mine: ->
     @user_id == Meteor.userId()
