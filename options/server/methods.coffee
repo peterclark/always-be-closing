@@ -3,12 +3,15 @@ Meteor.methods
   createOption: (params) ->
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
-    quote = Quote.first params.quote_id
-    count = quote.options.length
-    quote.push options: { name: "Option #{count+1}", _id: new Meteor.Collection.ObjectID()._str }
+    quote = Quote.findOne _id: params.quote_id
+    count = quote.options().length
+    option = Option.insert
+      name: "Option #{count+1}"
+      quote_id: quote.id
   
-  destroyOption: (params) ->
-    quote = Quote.first( params.quote_id )
+  destroyOption: (id) ->
+    option = Option.findOne _id: id
+    quote = options.quote()
     if quote.user_id != Meteor.userId()
       throw new Meteor.Error("not-authorized", "You do not own this quote.")
-    Quote._collection.update { _id: quote.id }, { $pull: { options: { _id: params.id }}}
+    option.remove _id: option._id

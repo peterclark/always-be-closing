@@ -3,7 +3,7 @@ Meteor.methods
   createQuote: (params) ->
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
-    quote = Quote.create
+    quote = Quote.insert
       user_id: Meteor.userId(),
       name: params.name,
       createdAt: new Date(),
@@ -12,7 +12,7 @@ Meteor.methods
       throw new Meteor.Error('invalid', quote.error_messages())
   
   destroyQuote: (id) ->
-    quote = Quote.find( id )
+    quote = Quote.findOne( _id: id )
     if quote.user_id != Meteor.userId()
       throw new Meteor.Error("not-authorized")
-    quote.destroy()
+    quote.remove( _id: quote._id )

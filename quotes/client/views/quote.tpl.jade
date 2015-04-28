@@ -1,6 +1,6 @@
 li.list-group-item(class=status)
   if mine
-    a(href="#").pull-right.delete.close &times;
+    button.pull-right.delete.close &times;
   
-  a(href="/quotes/#{id}")
+  a(href="/quotes/#{_id}")
     strong= name

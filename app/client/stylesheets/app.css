@@ -40,6 +40,10 @@ span.icon-bar {
   color: #000;
 }
 
+#signup-link {
+  color: #000 !important;
+}
+
 .page-header {
   margin-top: 0;
 }

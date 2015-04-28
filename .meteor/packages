@@ -8,7 +8,6 @@ meteor-platform
 accounts-ui
 accounts-password
 coffeescript
-kaptron:minimongoid
 twbs:bootstrap
 mquandalle:jade
 iron:router

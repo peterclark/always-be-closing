@@ -1,20 +1,32 @@
-class @User extends Minimongoid
+class @User
+  @collection: Meteor.users
   
-  @_collection: Meteor.users
-    
-  @has_many: [
-    { name: 'quotes', foreign_key: 'user_id' }
-  ]
+  constructor: (params) ->
+    @username = params.username
+    @_id = params._id
   
   # class methods
   
+  @find: (conditions={}) ->
+    User.collection.find conditions
+    
+  @findOne: (conditions={}) ->
+    user = User.collection.findOne conditions
+    new User( user ) if user
+  
   @current: -> 
-    User.init(Meteor.user()) if Meteor.userId()
+    new User(Meteor.user()) if Meteor.userId()
     
   @icon: ->
     'fa-users'
     
+  @count: (conditions={}) ->
+    @find(conditions).count()
+    
   # instance methods
+  
+  quotes: ->
+    Quote.find user_id: @_id
   
   icon: ->
     'fa-user'

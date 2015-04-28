@@ -1,33 +1,73 @@
-class @Quote extends Minimongoid
-  @_collection: new Meteor.Collection('quotes')
+class @Quote
+  @collection: new Meteor.Collection('quotes')
   
-  @belongs_to: [
-    { name: 'user' }
-  ]
-  
-  @embeds_many:  [
-    { name: 'options' }
-  ]
-  
-  @defaults:
-    description: ''
-    locked: false
-    username: ''
+  constructor: (params) ->
+    @name         = params.name
+    @description  = params.description
+    @locked       = params.locked or false
+    @username     = params.username
+    @user_id      = params.user_id
+    @errors       = false
   
   # class methods
   
   @icon: ->
     "fa-file-text"
     
-  @mine: (user_id) ->
-    @.where user_id: user_id
+  @find: (query={}) ->
+    quotes = Quote.collection.find( query ).fetch()
+    quotes = quotes.map (q) -> new Quote(q)
+    
+  @findOne: (query={}) ->
+    quote = Quote.collection.findOne( query )
+    new Quote( quote ) if quote
+    
+  @count: (query={}) ->
+    Quote.collection.find( query ).count()
+    
+  @insert: (params) ->
+    quote = new Quote(params)
+    quote.validate()
+    unless quote.errors
+      Quote.collection.insert params
+    quote
+    
+  # @update: (query, update) ->
+  #   Quote.collection.update query, update
+    
+  @remove: (query) ->
+    Quote.collection.remove query
   
   # instance methods
+  
+  insert: ->
+  
+  # update: (params) ->
+  #   for key, val of params
+  #     @[key] = val
+  #   Quote.collection.update( { _id: @_id }, { $set: } 
+  
+  remove: ->
+    Quote.collection.remove _id: @_id
+  
+  user: -> 
+    User.findOne( _id: @user_id ) if @user_id
+    
+  options: ->
+    Option.find quote_id: @_id
+    
+  mine: ->
+    @user_id == Meteor.userId()
   
   validate: ->
     unless @name and @name.length > 3
       @error('name', 'Quote name is too short')
-      @error('length', 'Length is wrong')
+      
+  error: (field, message) ->
+    @errors ||= []
+    e = {}
+    e[field] = message
+    @errors.push e
       
   error_messages: ->
     msg = []
@@ -39,6 +79,6 @@ class @Quote extends Minimongoid
   icon: ->
     "fa-file-text"
     
-  mine: ->
-    @user_id == Meteor.userId()
+  to_s: ->
+    name: @name
     
