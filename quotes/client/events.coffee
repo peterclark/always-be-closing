@@ -19,14 +19,15 @@ Template.quote.events
     
   # delete the quote
   "click .delete": (e) ->
-    Meteor.call("destroyQuote", @.id)
+    Meteor.call "destroyQuote", @._id, (error, result) ->
+      sAlert.error( error.reason ) if error
     
 Template.show_quote.events
 
   # add an option
   "click .create-option": (e) ->
     e.preventDefault()
-    params = { quote_id: @.id }
+    params = { quote_id: @._id }
     Meteor.call "createOption", params, (error, result) ->
       sAlert.error( error.reason ) if error
         

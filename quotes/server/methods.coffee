@@ -14,5 +14,5 @@ Meteor.methods
   destroyQuote: (id) ->
     quote = Quote.findOne( _id: id )
     if quote.user_id != Meteor.userId()
-      throw new Meteor.Error("not-authorized")
-    quote.remove( _id: quote._id )
+      throw new Meteor.Error("not-authorized", "You do not own this quote.")
+    quote.remove()

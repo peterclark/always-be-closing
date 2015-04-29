@@ -2,6 +2,7 @@ class @Quote
   @collection: new Meteor.Collection('quotes')
   
   constructor: (params) ->
+    @_id          = params._id
     @name         = params.name
     @description  = params.description
     @locked       = params.locked or false
@@ -54,7 +55,8 @@ class @Quote
     User.findOne( _id: @user_id ) if @user_id
     
   options: ->
-    Option.find quote_id: @_id
+    options = Option.find(quote_id: @_id)
+    options = options.map (o) -> new Option(o)
     
   mine: ->
     @user_id == Meteor.userId()

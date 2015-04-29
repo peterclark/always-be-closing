@@ -28,4 +28,4 @@ Template.quotes.helpers
 Template.show_quote.helpers
 
   options: (quote) ->
-    Option.find quote_id: @.id
+    Option.find quote_id: @_id
