@@ -26,7 +26,6 @@ class @Option
     Option.collection.find( query ).count()
     
   @insert: (params) ->
-    console.log params
     option = new Option(params)
     option.validate()
     unless option.errors
