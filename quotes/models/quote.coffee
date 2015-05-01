@@ -24,7 +24,7 @@ class @Quote extends Base
       user = User.findOne( _id: @user_id )
     
   options: ->
-    options = Option.find(quote_id: @_id).fetch()
+    options = Option.all(quote_id: @_id)
     
   mine: ->
     @user_id == Meteor.userId()

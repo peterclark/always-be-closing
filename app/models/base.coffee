@@ -1,6 +1,6 @@
 class @Base
   @collection: undefined
-  errors: false
+  errors: []
   
   # constructor
   constructor: (params={}) ->
@@ -14,21 +14,23 @@ class @Base
     obj.updated_at  = doc.updated_at
     obj
   
-  # Public: Find all documents that match the query and initialize.
-  #
-  # query       - selection criteria
-  # projection  - fields to return
-  #
-  # Examples
-  #
-  #   Quote.find( id: 99, active: true )
-  #   # => [Quote, Quote, Quote]
-  #
-  # Returns an array of objects
   @find: (selector={}) ->
     options = {}
     options.transform = (doc) => @new( doc )
-    @collection.find( selector, options ) 
+    @collection.find( selector, options )
+    
+  # Public: Find all documents that match the selector and initialize.
+  #
+  # selector    - selection criteria
+  #
+  # Examples
+  #
+  #   Quote.all( locked: true )
+  #   # => [Quote, Quote, Quote]
+  #
+  # Returns an array of objects    
+  @all: (selector={}) ->
+    @find( selector ).fetch()
       
   @findOne: (selector={}) ->
     doc = @collection.findOne( selector )

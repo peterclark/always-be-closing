@@ -15,7 +15,7 @@ class @User extends Base
   # instance methods
   
   quotes: ->
-    Quote.find( user_id: @_id ).fetch()
+    Quote.all( user_id: @_id )
   
   icon: ->
     'fa-user'
