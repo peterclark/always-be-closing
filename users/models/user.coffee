@@ -1,18 +1,10 @@
-class @User
+class @User extends Base
   @collection: Meteor.users
   
   constructor: (params) ->
     @username = params.username
-    @_id = params._id
   
   # class methods
-  
-  @find: (conditions={}) ->
-    User.collection.find conditions
-    
-  @findOne: (conditions={}) ->
-    user = User.collection.findOne conditions
-    new User( user ) if user
   
   @current: -> 
     new User(Meteor.user()) if Meteor.userId()
@@ -20,13 +12,10 @@ class @User
   @icon: ->
     'fa-users'
     
-  @count: (conditions={}) ->
-    @find(conditions).count()
-    
   # instance methods
   
   quotes: ->
-    Quote.find user_id: @_id
+    Quote.find( user_id: @_id ).fetch()
   
   icon: ->
     'fa-user'

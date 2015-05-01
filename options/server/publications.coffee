@@ -1,2 +1,2 @@
 Meteor.publish "options", ->
-  Option.collection.find()
+  Option.find()

@@ -2,7 +2,6 @@ class @Option extends Base
   @collection: new Meteor.Collection('options')
   
   constructor: (params) ->
-    super( params )
     @name         = params.name
     @description  = params.description
     @primary      = params.primary or false
@@ -22,7 +21,6 @@ class @Option extends Base
   quote: ->
     if @quote_id
       quote = Quote.findOne( _id: @quote_id )
-      new Quote( quote )
   
   icon: ->
     "fa-list-alt"

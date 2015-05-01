@@ -8,7 +8,7 @@ Meteor.methods
     option = Option.insert
       name: "Option #{count+1}",
       quote_id: quote._id
-    if option.errors
+    if option.has_errors()
       throw new Meteor.Error('invalid', option.error_messages())
   
   destroyOption: (id) ->

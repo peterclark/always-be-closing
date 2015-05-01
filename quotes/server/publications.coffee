@@ -1,2 +1,2 @@
 Meteor.publish "quotes", ->
-  Quote.collection.find()
+  Quote.find()
