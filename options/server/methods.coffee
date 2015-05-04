@@ -4,9 +4,8 @@ Meteor.methods
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
     quote = Quote.findOne _id: params.quote_id
-    count = quote.options().length
     option = Option.insert
-      name: "Option #{count+1}",
+      name: Meteor.call('generate_name'),
       quote_id: quote._id
     if option.has_errors()
       throw new Meteor.Error('invalid', option.error_messages())

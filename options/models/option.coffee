@@ -21,6 +21,9 @@ class @Option extends Base
   quote: ->
     if @quote_id
       quote = Quote.findOne( _id: @quote_id )
+      
+  configurations: ->
+    Configuration.all( option_id: @_id )
   
   icon: ->
     "fa-list-alt"

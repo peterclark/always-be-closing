@@ -1,0 +1,16 @@
+.page-header
+  h3
+    .pull-right
+      .btn-group
+        a.btn.btn-default.create-configuration(href="#" title="Add Configuration")
+          i.fa.fa-plus
+        a.btn.btn-default(href="#" title="Delete")
+          i.fa.fa-trash-o
+    
+    i.fa(class="#{icon}") 
+    = name
+    small option
+    
+ul.list-group#configurations
+  each configurations
+    +configuration
