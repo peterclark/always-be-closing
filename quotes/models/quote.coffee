@@ -32,6 +32,6 @@ class @Quote extends Base
   icon: ->
     "fa-file-text"
     
-  to_s: ->
+  toString: ->
     @name
     

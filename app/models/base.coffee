@@ -2,9 +2,6 @@ class @Base
   @collection: undefined
   errors: []
   
-  # constructor
-  constructor: (params={}) ->
-  
   # class methods
   
   @new: (doc={}) ->
@@ -39,7 +36,7 @@ class @Base
   @insert: (params={}) ->
     doc = new @( params )
     doc.updated_at = doc.created_at = new Date()
-    return doc unless doc.valid()
+    return doc unless doc.isValid()
     doc._id = @collection.insert( doc )
     doc
 
@@ -49,8 +46,34 @@ class @Base
   @count: (selector={}) ->
     @collection.find( selector ).count()
     
-  @to_s: ->
+  @toString: ->
     @collection._name
+    
+  # https://coffeescript-cookbook.github.io/chapters/classes_and_objects/cloning
+  @clone: (obj) ->
+    if not obj? or typeof obj isnt 'object'
+      return obj
+
+    if obj instanceof Date
+      return new Date( obj.getTime() ) 
+
+    if obj instanceof RegExp
+      flags = ''
+      flags += 'g' if obj.global?
+      flags += 'i' if obj.ignoreCase?
+      flags += 'm' if obj.multiline?
+      flags += 'y' if obj.sticky?
+      return new RegExp(obj.source, flags) 
+
+    newInstance = new obj.constructor()
+
+    for key of obj
+      if key == '_id'
+        newInstance['_id'] = undefined
+      else 
+        newInstance[key] = @clone( obj[key] )
+
+    return @new( newInstance )
     
   # instance methods
   
@@ -58,13 +81,13 @@ class @Base
     if @persisted()
       @update()
     else
-      return false unless @valid()
+      return false unless @isValid()
       @updated_at = @created_at = new Date()
       @_id = @constructor.collection.insert( @attributes() )
       
   update: ->
     if @persisted()
-      return false unless @valid()
+      return false unless @isValid()
       @updated_at = new Date()
       @constructor.collection.update( @_id, { $set: @attributes() } )
     else
@@ -79,7 +102,7 @@ class @Base
   validate: ->
     true
     
-  valid: ->
+  isValid: ->
     @errors = []
     @validate()
     @errors.length == 0
@@ -95,16 +118,18 @@ class @Base
     e[field] = message
     @errors.push e
     
-  has_errors: ->
+  hasErrors: ->
     @errors.length > 0
     
-  error_messages: ->
+  errorMessages: ->
     msg = []
     for i in @errors
       for key, value of i
         msg.push value
     msg.join(', ')
     
+  clone: (obj) ->
+    copy = @constructor.clone( @ )
     
     
     

@@ -8,8 +8,8 @@ Meteor.methods
       name: params.name,
       createdAt: new Date(),
       username: Meteor.user().username
-    if quote.has_errors()
-      throw new Meteor.Error('invalid', quote.error_messages())
+    if quote.hasErrors()
+      throw new Meteor.Error('invalid', quote.errorMessages())
   
   destroyQuote: (id) ->
     quote = Quote.findOne( _id: id )
