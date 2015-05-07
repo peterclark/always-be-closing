@@ -1,5 +1,3 @@
-Meteor.subscribe("quotes")
-
 Template.quotes.events
 
   # only show my quotes

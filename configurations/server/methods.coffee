@@ -4,7 +4,6 @@ Meteor.methods
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
     option = Option.findOne _id: params.option_id
-    count = option.configurations().length
     configuration = Configuration.insert
       name: Meteor.call('generateName'),
       option_id: option._id

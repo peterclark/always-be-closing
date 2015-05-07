@@ -1,0 +1,24 @@
+.page-header
+  h3
+    .pull-right
+      .btn-group
+        a.btn.btn-default.create-line-item(href="#" title="Add Line Item")
+          i.fa.fa-plus
+        a.btn.btn-default(href="#" title="Delete")
+          i.fa.fa-trash-o
+    
+    i.fa(class="#{icon}") 
+    = name
+    small configuration
+
+.row
+  .col-sm-12.col-md-8.col-md-offset-2
+    form.create-line-item
+      select.form-control#add-line-item
+        option(value disabled selected) add line item
+        each offerings
+          option(value=id)= name
+                  
+ul.list-group#line-items
+  each lineItems
+    +lineItem

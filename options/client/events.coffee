@@ -1,5 +1,3 @@
-Meteor.subscribe("options")
-
 # events that occur on option page
 Template.option.events
 
