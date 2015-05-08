@@ -9,5 +9,11 @@ class @Offering
     
   @count: ->
     @collection.find().count()
+    
+  @specification: (params) ->  
+    url       = Meteor.settings.product_catalog.specification_url + params.offering_id
+    headers   = Meteor.settings.product_catalog.headers
+    response  = HTTP.get( url, headers )
+    doc       = JSON.parse(response.content)['response']
       
   

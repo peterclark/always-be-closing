@@ -128,8 +128,9 @@ class @Base
         msg.push value
     msg.join(', ')
     
-  clone: (obj) ->
-    copy = @constructor.clone( @ )
+  copy: (obj) ->
+    console.log 'clone is being called'
+    @constructor.clone( @ )
     
     
     

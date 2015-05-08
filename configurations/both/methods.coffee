@@ -1,6 +1,7 @@
 Meteor.methods
 
   createConfiguration: (params) ->
+      
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
     option = Option.findOne _id: params.option_id

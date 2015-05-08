@@ -1,6 +1,6 @@
 Template.show_configuration.helpers
 
-  lineItems: (line_item) ->
+  lineItems: (configuration) ->
     LineItem.find configuration_id: @_id
     
   offerings: (configuration) ->

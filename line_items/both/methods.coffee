@@ -3,7 +3,9 @@ Meteor.methods
   createLineItem: (params) ->
     if !Meteor.userId()
       throw new Meteor.Error("not-authorized")
-    configuration = Configuration.findOne _id: params.configuration_id
+    line_item = LineItem.insert_from_specification( params )
+    if line_item.hasErrors()
+      throw new Meteor.Error('invalid', line_item.errorMessages())
   
   destroyLineItem: (id) ->
     line_item = LineItem.findOne _id: id

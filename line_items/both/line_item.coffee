@@ -2,14 +2,18 @@ class @LineItem extends Base
   @collection: new Meteor.Collection('line_items')
   
   constructor: (params) ->
-    @name             = params.name
-    @description      = params.description
-    @configuration_id = params.configuration_id
+    for key,value of params
+      @[key] = value
   
   # class methods
   
   @icon: ->
     "fa-tasks"
+    
+  @insert_from_specification: (params) ->
+    doc = Offering.specification( params )
+    doc['configuration_id'] = params.configuration_id
+    LineItem.insert( doc )
   
   # instance methods
     

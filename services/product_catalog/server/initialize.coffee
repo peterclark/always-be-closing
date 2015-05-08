@@ -1,8 +1,8 @@
 Meteor.startup ->
   if Offering.count() == 0
-    url = Meteor.settings.product_catalog.url
-    headers   = { 'X-Auth-Token': Meteor.settings.product_catalog.auth_token }
-    response  = HTTP.get( url, { headers: headers } )
+    url       = Meteor.settings.product_catalog.product_offerings_url
+    headers   = Meteor.settings.product_catalog.headers
+    response  = HTTP.get( url, headers )
     data      = JSON.parse(response.content)['response']
     Offering.collection.insert( doc ) for doc in data
     

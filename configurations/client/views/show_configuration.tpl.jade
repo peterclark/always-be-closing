@@ -14,11 +14,13 @@
 .row
   .col-sm-12.col-md-8.col-md-offset-2
     form.create-line-item
-      select.form-control#add-line-item
+      select.form-control#create-line-item
         option(value disabled selected) add line item
         each offerings
           option(value=id)= name
-                  
-ul.list-group#line-items
-  each lineItems
-    +lineItem
+br
+.row
+  .col-sm-12.col-md-8.col-md-offset-2
+    ul.list-group#line-items
+      each lineItems
+        +line_item
