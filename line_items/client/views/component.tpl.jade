@@ -1,0 +1,8 @@
+.dropdown.component
+  button.btn.btn-xs.dropdown-toggle(type='button' data-toggle='dropdown' aria-expanded='true' class="btn-#{status}")
+    = name
+    span.caret
+  ul.dropdown-menu(role='menu')
+    each selections
+      li
+        a(href="#")= name

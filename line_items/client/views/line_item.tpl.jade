@@ -1,5 +1,14 @@
 li.list-group-item
   button.pull-right.delete.close &times;
 
+  img.img-circle(src="http://lorempixel.com/50/50/technics")
+  
   a(href="/line_items/#{_id}")
     strong= name
+  
+  hr
+  
+  .row
+    .col-sm-12
+      each components
+        +component

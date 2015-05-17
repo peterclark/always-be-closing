@@ -22,7 +22,7 @@ class @LineItem extends Base
     
   configuration: ->
     if @configuration_id
-      configuration = Option.findOne( _id: @configuration_id )
+      configuration = Configuration.findOne( _id: @configuration_id )
   
   icon: ->
     "fa-tasks"

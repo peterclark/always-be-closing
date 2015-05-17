@@ -1,0 +1,13 @@
+.component {
+  display: inline-block;
+  margin: 0 2px 2px 0;
+}
+
+.component ul {
+  font-size: 12px;
+}
+
+.component button.dropdown-toggle {
+  width: 210px;
+  text-align: left;
+}

@@ -12,7 +12,7 @@
     small configuration
 
 .row
-  .col-sm-12.col-md-8.col-md-offset-2
+  .col-sm-12
     form.create-line-item
       select.form-control#create-line-item
         option(value disabled selected) add line item
@@ -20,7 +20,7 @@
           option(value=id)= name
 br
 .row
-  .col-sm-12.col-md-8.col-md-offset-2
+  .col-sm-12
     ul.list-group#line-items
       each lineItems
         +line_item

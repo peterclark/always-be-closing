@@ -1,11 +1,18 @@
 Meteor.methods
 
   createLineItem: (params) ->
-    if !Meteor.userId()
-      throw new Meteor.Error("not-authorized")
-    line_item = LineItem.insert_from_specification( params )
-    if line_item.hasErrors()
-      throw new Meteor.Error('invalid', line_item.errorMessages())
+    if Meteor.isClient
+      LineItem.insert
+        name: "generating...",
+        configuration_id: params.configuration_id
+    
+    if Meteor.isServer
+      Meteor._sleepForMs 5000
+      if !Meteor.userId()
+        throw new Meteor.Error("not-authorized")
+      line_item = LineItem.insert_from_specification( params )
+      if line_item.hasErrors()
+        throw new Meteor.Error('invalid', line_item.errorMessages())
   
   destroyLineItem: (id) ->
     line_item = LineItem.findOne _id: id
