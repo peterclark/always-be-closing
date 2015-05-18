@@ -1,4 +1,4 @@
-class @User extends Base
+class @User extends TinyModel
   @collection: Meteor.users
   
   constructor: (params) ->

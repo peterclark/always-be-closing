@@ -1,12 +1,10 @@
-class @Quote extends Base
+class @Quote extends TinyModel
   @collection: new Meteor.Collection('quotes')
   
   constructor: (params={}) ->
-    @name         = params.name
-    @description  = params.description
-    @locked       = params.locked or false
-    @username     = params.username
-    @user_id      = params.user_id
+    { @name, @description, @locked, @username, @user_id } = params
+    
+  @validates 'name', presence: true, length: { in: [5..15] }
   
   # class methods
   
@@ -14,10 +12,6 @@ class @Quote extends Base
     "fa-file-text"
   
   # instance methods
-  
-  validate: ->
-    unless @name and @name.length > 3
-      @error('name', 'Quote name is too short')
     
   user: -> 
     if @user_id

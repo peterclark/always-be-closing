@@ -1,10 +1,10 @@
-class @Configuration extends Base
+class @Configuration extends TinyModel
   @collection: new Meteor.Collection('configurations')
   
-  constructor: (params) ->
-    @name         = params.name
-    @description  = params.description
-    @option_id    = params.option_id
+  constructor: (params={}) ->
+    { @name, @description, @option_id } = params
+  
+  @validates 'name', presence: true, length: { in: [5..15] }
   
   # class methods
   
@@ -13,13 +13,12 @@ class @Configuration extends Base
   
   # instance methods
     
-  validate: ->
-    unless @name and @name.length > 3
-      @error('name', 'Configuration name is too short')
-    
   option: ->
     if @option_id
       option = Option.findOne( _id: @option_id )
+      
+  line_items: ->
+    LineItem.all( configuration_id: @_id )
   
   icon: ->
     "fa-list"

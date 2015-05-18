@@ -1,11 +1,10 @@
-class @Option extends Base
+class @Option extends TinyModel
   @collection: new Meteor.Collection('options')
   
-  constructor: (params) ->
-    @name         = params.name
-    @description  = params.description
-    @primary      = params.primary or false
-    @quote_id     = params.quote_id
+  constructor: (params={}) ->
+    { @name, @description, @primary, @quote_id } = params
+    
+  @validates 'name', presence: true, length: { in: [5..15] }
   
   # class methods
   
@@ -13,10 +12,6 @@ class @Option extends Base
     "fa-list-alt"
   
   # instance methods
-    
-  validate: ->
-    unless @name and @name.length > 3
-      @error('name', 'Option name is too short')
     
   quote: ->
     if @quote_id

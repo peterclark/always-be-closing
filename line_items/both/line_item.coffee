@@ -1,10 +1,9 @@
-class @LineItem extends Base
+class @LineItem extends TinyModel
   @collection: new Meteor.Collection('line_items')
   
-  constructor: (params) ->
-    for key,value of params
-      @[key] = value
-  
+  constructor: (params={}) ->
+    { @name, @configuration_id, @status, @components } = params
+    
   # class methods
   
   @icon: ->
@@ -16,9 +15,6 @@ class @LineItem extends Base
     LineItem.insert( doc )
   
   # instance methods
-    
-  validate: ->
-    true
     
   configuration: ->
     if @configuration_id
