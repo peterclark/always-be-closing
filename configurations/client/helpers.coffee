@@ -5,3 +5,6 @@ Template.show_configuration.helpers
     
   offerings: (configuration) ->
     Offering.all()
+    
+  totalLineItems: (configuration) ->
+    LineItem.count( configuration_id: @_id )

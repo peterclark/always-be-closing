@@ -21,6 +21,13 @@
 br
 .row
   .col-sm-12
-    ul.list-group#line-items
-      each lineItems
-        +line_item
+    .panel-group#line-item-accordion
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            .badge= totalLineItems
+            a(data-parent="#line-item-accordion" data-toggle="collapse" href="#collapse-line-items") Line Items
+        .panel-collapse.collapse.in#collapse-line-items
+          ul.list-group#line-items
+            each lineItems
+              +line_item

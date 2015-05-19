@@ -1,10 +1,27 @@
 li.list-group-item
   button.pull-right.delete.close &times;
-
-  img.img-circle(src="http://lorempixel.com/50/50/technics")
-  
-  a(href="/line_items/#{_id}")
-    strong= name
+     
+  .media
+    .media-left
+      a(href="/line_items/#{_id}")
+        img.media-object(src="#{image_url}" style="max-width: 50px")
+    .media-body
+      h4.media-heading
+        a(href="/line_items/#{_id}")
+          = name
+      .btn-group.btn-group-xs
+        button.btn.btn-default
+          i.fa.fa-fw.fa-rotate-left
+        button.btn.btn-default
+          i.fa.fa-fw.fa-copy
+        button.btn.btn-default
+          i.fa.fa-fw.fa-share
+        button.btn.btn-default
+          i.fa.fa-fw.fa-hdd-o
+        button.btn.btn-default
+          i.fa.fa-fw.fa-wrench
+        button.btn.btn-default.delete
+          i.fa.fa-fw.fa-trash-o
   
   hr
   

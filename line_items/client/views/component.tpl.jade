@@ -1,8 +1,13 @@
 .dropdown.component
   button.btn.btn-xs.dropdown-toggle(type='button' data-toggle='dropdown' aria-expanded='true' class="btn-#{status}")
+    if required
+      i.fa.fa-fw.fa-check-circle
+    else
+      i.fa.fa-fw
     = name
     span.caret
   ul.dropdown-menu(role='menu')
+    li.dropdown-header= name
     each selections
       li
         a(href="#")= name

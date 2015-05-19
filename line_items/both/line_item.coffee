@@ -2,7 +2,24 @@ class @LineItem extends TinyModel
   @collection: new Meteor.Collection('line_items')
   
   constructor: (params={}) ->
-    { @name, @configuration_id, @status, @components } = params
+    {
+      @id, 
+      @name,
+      @category_name,
+      @image_url,
+      @minimum_quantity,
+      @maximum_quantity,
+      @quantity,
+      @days_to_deploy,
+      @extended_deployment,
+      @associate_device,
+      @associated_devices,
+      @message_type_ids
+      @configuration_id,
+      @status,
+      @messages,
+      @components
+    } = params
     
   # class methods
   

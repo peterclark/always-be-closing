@@ -7,7 +7,7 @@ Meteor.methods
         configuration_id: params.configuration_id
     
     if Meteor.isServer
-      Meteor._sleepForMs 5000
+      # Meteor._sleepForMs 5000
       if !Meteor.userId()
         throw new Meteor.Error("not-authorized")
       line_item = LineItem.insert_from_specification( params )
