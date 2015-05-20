@@ -8,10 +8,16 @@ nav#main-nav.navbar.navbar-default.navbar-fixed-top
     .collapse.navbar-collapse#menu  
       ul.nav.navbar-nav
         li
-          a(href="/") Quotes
+          a(href="/")
+            i.fa.fa-fw.fa-file-o
+      form.navbar-form.navbar-left(role="search")
+        .form-group
+          input.form-control(type="text" placeholder="Search")
       ul.nav.navbar-nav.pull-right
         li
           +loginButtons
+          
++breadcrumbs
         
 .container-fluid
 
