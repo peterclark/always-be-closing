@@ -1,8 +1,10 @@
 class @Option extends TinyModel
   @collection: new Meteor.Collection('options')
   
-  constructor: (params={}) ->
-    { @name, @description, @primary, @quote_id } = params
+  @field 'name'
+  @field 'description'
+  @field 'primary', default: false
+  @field 'quote_id'
     
   @validates 'name', presence: true, length: { in: [5..15] }
   

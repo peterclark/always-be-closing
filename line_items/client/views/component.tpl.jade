@@ -10,4 +10,9 @@
     li.dropdown-header= name
     each selections
       li
-        a(href="#")= name
+        a(href="#")
+          if selected
+            i.fa.fa-fw.fa-check
+          else
+            i.fa.fa-fw
+          = name

@@ -1,8 +1,11 @@
 class @Quote extends TinyModel
   @collection: new Meteor.Collection('quotes')
   
-  constructor: (params={}) ->
-    { @name, @description, @locked, @username, @user_id } = params
+  @field 'name'
+  @field 'description'
+  @field 'locked', default: false
+  @field 'username'
+  @field 'user_id'
     
   @validates 'name', presence: true, length: { in: [5..15] }
   
