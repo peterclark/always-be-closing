@@ -1,3 +1,4 @@
-Router.route '/options/:_id', ->
-  @.render 'show_option',
-    data: -> Option.findOne( _id: @.params._id )
+Router.route '/options/:_id',
+  template: 'show_option',
+  name: 'option',
+  data: -> Option.findOne( _id: @.params._id )

@@ -1,5 +1,6 @@
 Router.configure
   layoutTemplate: 'layout'
 
-Router.route '/', ->
-  @.render 'quotes'
+Router.route '/',
+  template: 'quotes'
+  name: 'root'

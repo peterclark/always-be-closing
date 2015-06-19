@@ -5,7 +5,7 @@ class @Configuration extends TinyModel
   @field 'description'
   @field 'option_id'
   
-  @validates 'name', presence: true, length: { in: [5..15] }
+  @validates 'name', presence: true, length: { in: [3..30] }
   
   # class methods
   
